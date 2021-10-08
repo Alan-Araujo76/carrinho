@@ -1,19 +1,37 @@
-import styled from 'styled-components'
+import { StrictMode } from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  padding: 2em 5em;
-
-  .itens {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-`
+import './styles.css'
 
 
-export { Container }
+import Teste from "./teste";
+import Contador from "./comunicacaoComps/contador";
+import Pedido from "./comunicacaoComps/finalizacaoPedido/pedido";
+import ConclusaoPedido from "./comunicacaoComps/finalizacaoPedido/conclusao";
+
+import App from './home'
+import DetalheProduto from './detalheProduto'
+import Carrinho from './carrinho'
+
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(
+  <StrictMode>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" exact={true} component={App} />
+        <Route path="/detalhe" component={DetalheProduto} />
+        <Route path="/carrinho" component={Carrinho} />
+        
+        <Route path="/teste" component={Teste} />
+        <Route path="/contador" exact={true} component={Contador} />
+        <Route path="/pedido" component={Pedido} />
+        <Route path="/conclusao" component={ConclusaoPedido} />
+
+      </Switch>
+    </BrowserRouter>
+  </StrictMode>,
+  rootElement
+);
